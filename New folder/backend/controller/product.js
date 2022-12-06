@@ -34,7 +34,6 @@ exports.getProducts = (req, res) => {
 
 exports.getProductDetailsById = (req, res) => {
   const { productId } = req.params;
-  console.log(req.params);
   if (productId) {
     Product.findOne({ _id: productId }).exec((error, product) => {
       if (error) return res.status(400).json({ error });
@@ -49,8 +48,9 @@ exports.getProductDetailsById = (req, res) => {
 
 // new update
 exports.deleteProductById = (req, res) => {
-  if (req.params.id) {
-    Product.deleteOne({ _id: req.params.id }).exec((error, result) => {
+  console.log("id", req.params.productId);
+  if (req.params.productId) {
+    Product.deleteOne({ _id: req.params.productId }).exec((error, result) => {
       if (error) return res.status(400).json({ error });
       if (result) {
         res.status(202).json({ result });
